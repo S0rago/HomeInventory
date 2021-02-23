@@ -21,4 +21,6 @@ public class User {
     @Column(name = "password", nullable = false)
     private String passwordHash;
 
+    @Column(name = "is_locked", nullable = false)
+    private boolean isLocked;
 }
