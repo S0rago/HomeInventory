@@ -5,28 +5,14 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/homeinv?serverTimezone=UTC
     username: root
-    password: HMUKFFlE0Rr;U!7~uYo#
+    password: ${db_pass}
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
-#  boot:
-#    admin:
-#      client:
-#        url: http://zerone.network:9080
-#        username: admin
-#        password: admin
-#server:
-#  port: ${PORT:8080}
-#app:
-#  jwtSecret: MgTCHVTUKiTLQBhwzahsWY03OtBMy0pqd8kAy0VFj1dWHP3dUNj7ThJjAY8ozrK5E1DgWl95KhEMypFFd61R4QMgTCHVTUKiTLQBhwzahsWY03OtBMy0pqd8kAy0VFj1dWHP3dUNj7ThJjAY8ozrK5E1DgWl95KhEMypFFd61R4Q
-#  jwtExpirationMs: 86400000
-#appEmail:
-#  email: socialnetwork.studygroup8@gmail.com
-#  password: ghFrgwh45*hdtQe1f?hd
-#reCaptcha:
-#  secretCode: 6LdjKe0ZAAAAABh6fjMjCRGKLO7xSNMP_fnu7aEn
-#  url: https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s
+app:
+  jwtSecret: ${jwt_secret}
+  jwtExpirationMs: 2592000000
