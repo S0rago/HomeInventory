@@ -2,12 +2,14 @@ package ru.sorago.homeinv.service;
 
 import ru.sorago.homeinv.data.request.LoginRequest;
 import ru.sorago.homeinv.data.request.RegistrationRequest;
-import ru.sorago.homeinv.data.response.base.Response;
+import ru.sorago.homeinv.data.response.base.RecordResponse;
+import ru.sorago.homeinv.data.response.type.LoginData;
+import ru.sorago.homeinv.data.response.type.ResponseMessage;
 
 public interface UserService {
-    Response login(LoginRequest request);
+    RecordResponse<LoginData> login(LoginRequest request);
 
-    Response logout();
+    RecordResponse<ResponseMessage> logout();
 
-    Response register(RegistrationRequest request);
+    RecordResponse<ResponseMessage> register(RegistrationRequest request);
 }

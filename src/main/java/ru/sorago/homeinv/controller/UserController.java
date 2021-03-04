@@ -2,7 +2,9 @@ package ru.sorago.homeinv.controller;
 
 import ru.sorago.homeinv.data.request.LoginRequest;
 import ru.sorago.homeinv.data.request.RegistrationRequest;
-import ru.sorago.homeinv.data.response.base.Response;
+import ru.sorago.homeinv.data.response.base.RecordResponse;
+import ru.sorago.homeinv.data.response.type.LoginData;
+import ru.sorago.homeinv.data.response.type.ResponseMessage;
 import ru.sorago.homeinv.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,18 +20,18 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<Response> login(
+    public ResponseEntity<RecordResponse<LoginData>> login(
             @RequestBody LoginRequest request) {
         return ResponseEntity.ok(userService.login(request));
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<Response> logout() {
+    public ResponseEntity<RecordResponse<ResponseMessage>> logout() {
         return ResponseEntity.ok(userService.logout());
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Response> register(@RequestBody RegistrationRequest request) {
+    public ResponseEntity<RecordResponse<ResponseMessage>> register(@RequestBody RegistrationRequest request) {
         return ResponseEntity.ok(userService.register(request));
     }
 

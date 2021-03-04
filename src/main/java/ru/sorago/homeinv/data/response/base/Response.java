@@ -1,6 +1,5 @@
 package ru.sorago.homeinv.data.response.base;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,20 +8,12 @@ import java.time.Instant;
 @Data
 @NoArgsConstructor
 public class Response {
-    private String message;
-    private long timestamp;
+    private String error = "";
+    private long timestamp = Instant.now().getEpochSecond();
     private boolean success;
 
-    public Response(String message) {
+    public Response(String error) {
         success = true;
-        this.message = message;
-    }
-
-    public void setTimestamp() {
-        this.timestamp = Instant.now().getEpochSecond();
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+        this.error = error;
     }
 }

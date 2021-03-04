@@ -18,11 +18,15 @@ public class ApiError implements Serializable {
     public ApiError(String error, String errorDescription, String statusText) {
         this.error = error;
         this.errorDescription = errorDescription;
-        this.statusText = errorDescription;
+        this.statusText = statusText;
     }
 
     public ApiError(String errorDescription, String statusText) {
         this(INVALID_REQUEST, errorDescription, statusText);
+    }
+
+    public ApiError(String errorDescription) {
+        this(errorDescription, HttpStatus.BAD_REQUEST.toString());
     }
 
     public ApiError() {
