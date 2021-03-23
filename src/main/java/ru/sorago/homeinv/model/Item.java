@@ -13,6 +13,9 @@ public class Item {
     private long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    private User owner;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private ItemType type;
 
     @Column(nullable = false)
