@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class RecordResponse<T> extends Response {
+public class RecordResponse<T> extends BaseResponse {
     private T data;
     public RecordResponse(T data) {
         this.data = data;

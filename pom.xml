@@ -12,7 +12,7 @@
 	<artifactId>homeinv</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>HomeInventory</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Home items manager</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -72,6 +72,11 @@
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
 			<version>0.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.lookfirst</groupId>
+			<artifactId>sardine</artifactId>
+			<version>5.10</version>
 		</dependency>
 	</dependencies>
 

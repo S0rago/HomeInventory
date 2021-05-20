@@ -7,7 +7,6 @@ import ru.sorago.homeinv.data.request.LoginRequest;
 import ru.sorago.homeinv.data.request.RegistrationRequest;
 import ru.sorago.homeinv.data.response.base.RecordResponse;
 import ru.sorago.homeinv.data.response.type.LoginData;
-import ru.sorago.homeinv.data.response.base.Response;
 import ru.sorago.homeinv.data.response.type.ResponseMessage;
 import ru.sorago.homeinv.exception.ApiError;
 import ru.sorago.homeinv.exception.BadRequestException;
@@ -54,12 +53,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 loginData.setName(user.getName());
                 loginData.setEmail(user.getEmail());
                 loginData.setToken(jwt);
+                response.setData(loginData);
             } else {
                 throw new UsernameNotFoundException("User not found");
             }
         } catch (Exception ex) {
             response.setSuccess(false);
-            response.setError(ex.getMessage());
+            response.setMessage(ex.getMessage());
         }
         return response;
     }
