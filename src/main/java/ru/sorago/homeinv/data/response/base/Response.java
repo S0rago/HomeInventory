@@ -7,12 +7,12 @@ import java.time.Instant;
 
 @Data
 @NoArgsConstructor
-public class BaseResponse {
+public class Response {
     private String message = "";
     private long timestamp = Instant.now().getEpochSecond();
     private boolean success = true;
 
-    public BaseResponse(String message) {
+    public Response(String message) {
         success = false;
         this.message = message;
     }

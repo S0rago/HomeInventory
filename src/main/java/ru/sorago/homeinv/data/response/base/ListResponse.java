@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class ListResponse<T> extends BaseResponse {
+public class ListResponse<T> extends Response {
     private long total;
     private int offset;
     private int perPage;

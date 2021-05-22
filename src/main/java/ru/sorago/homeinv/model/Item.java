@@ -3,6 +3,7 @@ package ru.sorago.homeinv.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "items")
@@ -21,7 +22,10 @@ public class Item {
     @Column(nullable = false)
     private String name;
 
-    @Column
-    private String props;
+    @OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
+    private Set<ItemProp> props;
 
+    private void addProp(ItemProp prop) {
+        props.add(prop);
+    }
 }

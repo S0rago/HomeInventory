@@ -15,20 +15,25 @@ import ru.sorago.homeinv.data.response.type.ResponseMessage;
 import ru.sorago.homeinv.exception.ApiError;
 import ru.sorago.homeinv.exception.BadRequestException;
 import ru.sorago.homeinv.model.Item;
+import ru.sorago.homeinv.model.ItemProp;
 import ru.sorago.homeinv.model.ItemType;
 import ru.sorago.homeinv.model.User;
+import ru.sorago.homeinv.repository.ItemPropsRepository;
 import ru.sorago.homeinv.repository.ItemRepository;
 import ru.sorago.homeinv.repository.ItemTypeRepository;
 
 import javax.transaction.Transactional;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
     private final ItemRepository itemRepository;
     private final ItemTypeRepository itemTypeRepository;
+    private final ItemPropsRepository itemPropsRepository;
 
     @Override
     public ListResponse<ItemData> getAllItems(Integer offset, Integer perPage) {
@@ -123,10 +128,14 @@ public class ItemServiceImpl implements ItemService {
             }
             item.setType(type);
         }
+        Set<ItemProp> propSet = request.getProps();
+        propSet.forEach(p -> p.setItem(item));
+        itemPropsRepository.saveAll(propSet);
+        item.setProps(request.getProps());
+        item.setOwner(ContextUtilities.getCurrentUser());
         itemRepository.save(item);
         ItemData itemData = new ItemData();
         itemData.setId(item.getId());
-        item.setOwner(ContextUtilities.getCurrentUser());
         itemData.setName(item.getName());
         itemData.setType(item.getType());
         return itemData;
